@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-
+import profileImg from "../assets/myLogo.png";
+import { motion } from "framer-motion";
 export const NavbarsComponent = () => {
   const [scroll, setScroll] = useState(false);
 
@@ -36,7 +37,14 @@ export const NavbarsComponent = () => {
             color: "#fff",
           }}
         >
-          MyPortfolio
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="about-img-container"
+          >
+            <img src={profileImg} alt="Satish Jawarkar" className="LogoImage" />
+          </motion.div>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="navbar-nav"

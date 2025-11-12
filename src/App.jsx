@@ -9,6 +9,8 @@ import ProjectsSection from "./component/ProjectsSection";
 import ContactSection from "./component/ContactSection";
 import AboutSection from "./component/AboutSection";
 import Footer from "./component/Footer";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   useEffect(() => {
@@ -18,7 +20,7 @@ function App() {
     <>
       <NavbarsComponent />
 
-      <main style={{ marginTop: "60px" }}>
+      <main style={{ marginTop: "86px" }}>
         <HeroSection className="mt-16" />
         <SkillsSection className="mt-16" />
         <ProjectsSection className="mt-16" />
