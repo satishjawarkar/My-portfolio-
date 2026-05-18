@@ -1,5 +1,5 @@
 import React from "react";
-// import profileImg from "../assets/Photos.jpg"; // Uncomment when image is available
+import profileImg from "../assets/Photos.png"; // Uncomment when image is available
 
 const HeroSection = () => {
   return (
@@ -76,7 +76,14 @@ const HeroSection = () => {
 
             {/* Replace avatar-placeholder with <img> when you have the photo:
                 <img src={profileImg} alt="Satish Jawarkar" className="avatar-circle" /> */}
-            <div className="avatar-placeholder">SJ</div>
+            <div className="avatar-placeholder">
+              {/* SJ{" "} */}
+              <img
+                src={profileImg}
+                alt="Satish Jawarkar"
+                className="avatar-circle"
+              />
+            </div>
 
             {/* Floating Badges */}
             <div className="hero-badge badge-top">

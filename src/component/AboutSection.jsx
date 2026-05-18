@@ -1,5 +1,5 @@
 import React from "react";
-// import profileImg from "../assets/Photos.jpg";
+import profileImg from "../assets/Photos.png";
 
 const AboutSection = () => {
   return (
@@ -8,14 +8,11 @@ const AboutSection = () => {
         {/* LEFT - Image */}
         <div className="about-img-side">
           <div className="about-img-frame">
-            <div className="about-decor-circle" />
-
-            {/* Replace with real image when available:
-                <div className="about-img-main">
-                  <img src={profileImg} alt="Satish Jawarkar" />
-                </div>
-            */}
-            <div className="about-img-placeholder">SJ</div>
+            <div className="about-decor-circle"></div>
+            {/* Replace with real image when available: */}
+            <div className="about-img-main">
+              <img src={profileImg} alt="Satish Jawarkar" />
+            </div>
 
             {/* Floating experience card */}
             <div className="about-float-card">
