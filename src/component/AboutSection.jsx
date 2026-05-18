@@ -19,7 +19,7 @@ const AboutSection = () => {
 
             {/* Floating experience card */}
             <div className="about-float-card">
-              <div className="big-num">3+</div>
+              <div className="big-num">4.7+</div>
               <div className="big-lbl">
                 Years of
                 <br />
