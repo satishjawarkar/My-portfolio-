@@ -81,7 +81,7 @@ const AboutSection = () => {
             <div className="meta-row">
               <div className="meta-icon">✉️</div>
               <span>
-                <strong>Email:</strong>&nbsp; satish.jawarkar@example.com
+                <strong>Email:</strong>&nbsp; satishjawarkar1792@gmail.com
               </span>
             </div>
             <div className="meta-row">
