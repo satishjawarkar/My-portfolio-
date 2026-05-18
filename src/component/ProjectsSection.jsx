@@ -52,7 +52,7 @@ const PROJECTS = [
     bg: "linear-gradient(135deg,#ef4444,#dc2626)",
     tags: ["React", "Node.js", "MongoDB"],
     cat: "Fullstack",
-    live: "https://pmgatishakti.gov.in",
+    live: "https://pmgatishakti.gov.in/pmgatishakti/login",
     github: "#",
     featured: false,
   },
