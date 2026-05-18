@@ -1,55 +1,128 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Button } from "@mui/material";
-import profileImg from "../assets/Photos.jpg";
+// import profileImg from "../assets/Photos.jpg";
+
 const AboutSection = () => {
   return (
     <section id="about" className="about-section">
-      <div className="container about-container">
-        {/* Profile Image */}
-        <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="about-img-container"
-        >
-          <img src={profileImg} alt="Satish Jawarkar" className="about-img" />
-        </motion.div>
+      <div className="about-inner">
+        {/* LEFT - Image */}
+        <div className="about-img-side">
+          <div className="about-img-frame">
+            <div className="about-decor-circle" />
 
-        {/* About Text */}
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="about-text"
-        >
-          <h2 className="about-title">About Me</h2>
-          <p className="about-desc">
-            Hello! I’m <span className="highlight-blue">Satish Jawarkar</span>,
-            a passionate{" "}
-            <span className="highlight-purple">Frontend Developer</span> who
-            loves crafting elegant and performant web experiences using{" "}
-            <span className="highlight-blue">
-              Angular, AngularMatrial,React,JavaSecript, Tailwind CSS, Bootsrap
-            </span>{" "}
-            and <span className="highlight-purple">MUI</span>.
-          </p>
+            {/* Replace with real image when available:
+                <div className="about-img-main">
+                  <img src={profileImg} alt="Satish Jawarkar" />
+                </div>
+            */}
+            <div className="about-img-placeholder">SJ</div>
 
-          <p className="about-desc">
-            I focus on creating smooth, responsive, and interactive interfaces
-            that deliver real impact. My aim is to blend clean design with
-            cutting-edge technologies — and I never stop learning!
-          </p>
+            {/* Floating experience card */}
+            <div className="about-float-card">
+              <div className="big-num">3+</div>
+              <div className="big-lbl">
+                Years of
+                <br />
+                Experience
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <Button
-            variant="contained"
-            color="info"
-            href="#projects"
-            className="about-btn"
+        {/* RIGHT - Text */}
+        <div className="about-text-side">
+          <div
+            className="section-header"
+            style={{ textAlign: "left", marginBottom: 24 }}
           >
-            🚀 Check My Work
-          </Button>
-        </motion.div>
+            <span className="section-badge">About Me</span>
+            <h2 className="section-title">Who I Am 👋</h2>
+          </div>
+
+          <p className="about-label">Software Developer & UI Enthusiast</p>
+
+          <p className="about-desc">
+            Hello! I'm <span className="hl">Satish Jawarkar</span>, a passionate{" "}
+            <span className="hl">Software Developer</span> from India who loves
+            building elegant, performant web applications that deliver real
+            impact.
+          </p>
+
+          <p className="about-desc">
+            I specialize in{" "}
+            <span className="hl2">React, Angular, JavaScript, TypeScript</span>{" "}
+            and modern UI libraries like{" "}
+            <span className="hl">Tailwind CSS, Bootstrap & MUI</span>. My goal
+            is to blend clean design with cutting-edge technologies — and I
+            never stop learning!
+          </p>
+
+          {/* Quick Stats */}
+          <div className="about-stats-row">
+            <div className="mini-stat">
+              <div className="mn">15+</div>
+              <div className="ml">Projects Done</div>
+            </div>
+            <div className="mini-stat">
+              <div className="mn">10+</div>
+              <div className="ml">Happy Clients</div>
+            </div>
+            <div className="mini-stat">
+              <div className="mn">4.7+</div>
+              <div className="ml">Years Exp.</div>
+            </div>
+          </div>
+
+          {/* Info List */}
+          <div className="about-meta">
+            <div className="meta-row">
+              <div className="meta-icon">📍</div>
+              <span>
+                <strong>Location:</strong>&nbsp; New Delhi (India)
+              </span>
+            </div>
+            <div className="meta-row">
+              <div className="meta-icon">✉️</div>
+              <span>
+                <strong>Email:</strong>&nbsp; satish.jawarkar@example.com
+              </span>
+            </div>
+            <div className="meta-row">
+              <div className="meta-icon">💼</div>
+              <span>
+                <strong>Role:</strong>&nbsp; Software Developer
+              </span>
+            </div>
+            <div className="meta-row">
+              <div className="meta-icon">🎓</div>
+              <span>
+                <strong>Education:</strong>&nbsp; B.E. Computer Science &
+                Engineering
+              </span>
+            </div>
+            <div className="meta-row">
+              <div className="meta-icon">🌐</div>
+              <span>
+                <strong>Languages:</strong>&nbsp; English, Hindi, Marathi
+              </span>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="about-btns">
+            <a href="#projects" className="btn-primary">
+              🚀 View My Work
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1gKHUzR3i4ZVXhqWUs0PhT8eTnjF0mC5i/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              📄 Download Resume
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

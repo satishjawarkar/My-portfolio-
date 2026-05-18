@@ -1,34 +1,29 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
+import React from "react";
 
-import "./App.css";
-import { NavbarsComponent } from "./component/NavbarsComponent";
+import NavbarsComponent from "./component/NavbarsComponent";
 import HeroSection from "./component/HeroSection";
-import SkillsSection from "./component/SkillsSection";
-import ProjectsSection from "./component/ProjectsSection";
-import ContactSection from "./component/ContactSection";
 import AboutSection from "./component/AboutSection";
+import SkillsSection from "./component/SkillsSection";
+import ExperienceSection from "./component/ExperienceSection";
+import ProjectsSection from "./component/ProjectsSection";
+// import TestimonialsSection from "./component/TestimonialsSection";
+import ContactSection from "./component/ContactSection";
 import Footer from "./component/Footer";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "./App.css";
 
 function App() {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
   return (
-    <>
+    <div id="root">
       <NavbarsComponent />
-
-      <main style={{ marginTop: "86px" }}>
-        <HeroSection className="mt-16" />
-        <SkillsSection className="mt-16" />
-        <ProjectsSection className="mt-16" />
-        <ContactSection className="mt-16" />
-        <AboutSection className="mt-16" />
-        <Footer className="mt-16" />
-      </main>
-    </>
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ExperienceSection />
+      <ProjectsSection />
+      {/* <TestimonialsSection /> */}
+      <ContactSection />
+      <Footer />
+    </div>
   );
 }
 

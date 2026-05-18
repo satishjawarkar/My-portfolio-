@@ -1,105 +1,278 @@
 import React, { useState } from "react";
-import { TextField, Button, Typography, Box } from "@mui/material";
-import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: "",
     email: "",
+    subject: "",
+    budget: "",
     message: "",
   });
 
-  const phoneNumber = "919876543210";
+  // Track submission states for better user experience
+  const [isSending, setIsSending] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSending(true);
+    setStatusMessage("");
 
-    const { name, email, message } = formData;
+    sendMessage();
+    // Map your form fields to match your EmailJS Template variables exactly
+    const templateParams = {
+      from_name: form.name,
+      from_email: form.email,
+      subject: form.subject || "No Subject provided",
+      budget: form.budget || "Not Specified",
+      message: form.message,
+    };
 
-    const whatsappMessage = `Hello, my name is ${name}. My email is ${email}. Here is my message: ${message}`;
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      whatsappMessage
-    )}`;
-    window.open(url, "_blank");
+    emailjs
+      .send(
+        "service_b78xjjd", // Replace with your Service ID
+        "template_wkva7vc", // Replace with your Template ID
+        templateParams,
+        "1caAEqgTq0Ltp9Nsu", // Replace with your Public Key
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          setIsSending(false);
+          setStatusMessage("✅ Message sent successfully!");
+          // Reset form fields after successful delivery
+          setForm({
+            name: "",
+            email: "",
+            subject: "",
+            budget: "",
+            message: "",
+          });
+        },
+        (error) => {
+          console.error("FAILED...", error);
+          setIsSending(false);
+          setStatusMessage("❌ Failed to send message. Please try again.");
+        },
+      );
+  };
+  const sendMessage = () => {
+    const phone = "917828467959"; // Country code + mobile number
+    const text = encodeURIComponent(
+      "Hello Satish! I'm interested in your services.",
+    );
+    window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
   };
 
   return (
     <section id="contact" className="contact-section">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="contact-container"
-      >
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-          className="contact-title"
-        >
-          Get In Touch 💬
-        </Typography>
-        <Typography align="center" color="rgba(255,255,255,0.7)" sx={{ mb: 4 }}>
-          Have a project in mind or just want to say hello? Let’s connect!
-        </Typography>
+      <div className="contact-inner">
+        {/* LEFT INFO */}
+        <div className="contact-left">
+          <span className="section-badge">Get In Touch</span>
+          <h3>Let's Work Together! 🤝</h3>
+          <p>
+            Have a project in mind or just want to say hello? I'm always open to
+            discussing new opportunities, creative ideas, or partnerships. Drop
+            me a message directly!
+          </p>
 
-        <Box component="form" onSubmit={handleSubmit} className="contact-form">
-          <TextField
-            fullWidth
-            label="Your Name"
-            name="name"
-            variant="outlined"
-            color="info"
-            value={formData.name}
-            onChange={handleChange}
-            InputLabelProps={{ style: { color: "#ccc" } }}
-            InputProps={{ style: { color: "#fff" } }}
-          />
+          <div className="contact-details">
+            <div className="cd-item">
+              <div
+                className="cd-icon"
+                style={{ background: "rgba(79,70,229,0.15)" }}
+              >
+                📍
+              </div>
+              <div className="cd-text">
+                <strong>Location</strong>
+                <span>New Delhi (India)</span>
+              </div>
+            </div>
 
-          <TextField
-            fullWidth
-            label="Your Email"
-            name="email"
-            variant="outlined"
-            color="info"
-            value={formData.email}
-            onChange={handleChange}
-            InputLabelProps={{ style: { color: "#ccc" } }}
-            InputProps={{ style: { color: "#fff" } }}
-          />
+            <div className="cd-item">
+              <div
+                className="cd-icon"
+                style={{ background: "rgba(34,197,94,0.15)" }}
+              >
+                ✉️
+              </div>
+              <div className="cd-text">
+                <strong>Email</strong>
+                <span>satishjawarkar1792@gmail.com</span>
+              </div>
+            </div>
 
-          <TextField
-            fullWidth
-            label="Your Message"
-            name="message"
-            multiline
-            rows={4}
-            variant="outlined"
-            color="info"
-            value={formData.message}
-            onChange={handleChange}
-            InputLabelProps={{ style: { color: "#ccc" } }}
-            InputProps={{ style: { color: "#fff" } }}
-          />
+            <div className="cd-item">
+              <div
+                className="cd-icon"
+                style={{ background: "rgba(6,182,212,0.15)" }}
+              >
+                📱
+              </div>
+              <div className="cd-text">
+                <strong>WhatsApp</strong>
+                <span>+91 7828467959</span>
+              </div>
+            </div>
 
-          <div className="text-center">
-            <Button
-              type="submit"
-              variant="contained"
-              size="large"
-              className="whatsapp-btn"
-            >
-              💌 Send via WhatsApp
-            </Button>
+            <div className="cd-item">
+              <div
+                className="cd-icon"
+                style={{ background: "rgba(250,204,21,0.15)" }}
+              >
+                ⏰
+              </div>
+              <div className="cd-text">
+                <strong>Availability</strong>
+                <span>Mon – Sat, 9AM – 7PM IST</span>
+              </div>
+            </div>
           </div>
-        </Box>
-      </motion.div>
+
+          {/* Social Icons */}
+          <div className="contact-social-row">
+            <a
+              href="https://github.com/satishjawarkar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="soc-icon-btn"
+              title="GitHub"
+            >
+              🐙
+            </a>
+            <a
+              href="https://www.linkedin.com/in/satish-jawarkar-097a68141"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="soc-icon-btn"
+              title="LinkedIn"
+            >
+              💼
+            </a>
+            <a
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="soc-icon-btn"
+              title="Twitter"
+            >
+              🐦
+            </a>
+            <a
+              href="https://wa.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="soc-icon-btn"
+              title="WhatsApp"
+            >
+              💬
+            </a>
+          </div>
+        </div>
+
+        {/* RIGHT FORM */}
+        <div className="contact-form-wrap">
+          <form onSubmit={handleSubmit}>
+            {/* Name + Email row */}
+            <div className="form-row-2">
+              <div className="fg">
+                <label>Your Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Satish Jawarkar"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="fg">
+                <label>Your Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="satish@example.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Subject + Budget row */}
+            <div className="form-row-2">
+              <div className="fg">
+                <label>Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Project Inquiry"
+                  value={form.subject}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="fg">
+                <label>Budget (Optional)</label>
+                <select
+                  name="budget"
+                  value={form.budget}
+                  onChange={handleChange}
+                >
+                  <option value="">Select budget</option>
+                  <option value="< ₹10,000">Less than ₹10,000</option>
+                  <option value="₹10,000 – ₹30,000">₹10,000 – ₹30,000</option>
+                  <option value="₹30,000 – ₹1,00,000">
+                    ₹30,000 – ₹1,00,000
+                  </option>
+                  <option value="> ₹1,00,000">More than ₹1,00,000</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Message */}
+            <div className="fg">
+              <label>Your Message</label>
+              <textarea
+                name="message"
+                rows={4}
+                placeholder="Tell me about your project or idea..."
+                value={form.message}
+                required
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Submit Button & Status Notification */}
+            <button
+              type="submit"
+              className="wa-submit-btn"
+              disabled={isSending}
+            >
+              <span>{isSending ? "⏳" : "✉️"}</span>{" "}
+              {isSending ? "Sending..." : "Send Message"}
+            </button>
+
+            {statusMessage && (
+              <p
+                style={{
+                  marginTop: "15px",
+                  fontWeight: "500",
+                  fontSize: "14px",
+                }}
+              >
+                {statusMessage}
+              </p>
+            )}
+          </form>
+        </div>
+      </div>
     </section>
   );
 };

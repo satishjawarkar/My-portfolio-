@@ -1,59 +1,118 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Button } from "@mui/material";
-import profileImg from "../assets/Photos.jpg";
+// import profileImg from "../assets/Photos.jpg"; // Uncomment when image is available
 
 const HeroSection = () => {
   return (
-    <section
-      id="home"
-      className=" m-16 p-2.5 relative flex flex-col md:flex-row justify-center items-center  p-6 overflow-hidden text-white"
-    >
-      {/* Animated Gradient Background */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 animate-gradient bg-[length:200%_200%] -z-10"></div>
+    <section id="home" className="hero-section">
+      {/* Background Effects */}
+      <div className="hero-bg-glow" />
+      <div className="hero-grid" />
 
-      {/* Text Content */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-        className="flex-1 text-center md:text-left z-10"
-      >
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
-          Hi, I'm <span className="text-yellow-300">Satish Jawarkar</span>
-        </h1>
-        <p className="text-lg md:text-xl mb-6 leading-relaxed max-w-xl mx-auto md:mx-0">
-          I’m a passionate Software Developer creating modern, interactive, and
-          responsive web applications with a focus on user experience and
-          design.
-        </p>
-        <Button
-          variant="contained"
-          color="secondary"
-          href="#projects"
-          className="hero-btn font-bold py-3 px-6 text-lg rounded-lg shadow-lg transition-transform hover:scale-105 hover:shadow-xl"
-        >
-          View My Work
-        </Button>
-      </motion.div>
+      <div className="hero-content">
+        {/* LEFT TEXT */}
+        <div className="hero-left">
+          {/* Greeting Badge */}
+          <div className="hero-greeting">
+            <span className="dot" />
+            Available for work
+          </div>
 
-      {/* Floating Profile Image */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: [0, -20, 0] }}
-        transition={{ duration: 4, repeat: Infinity, repeatType: "loop" }}
-        className="flex-1 mt-10 md:mt-0 flex justify-center z-10"
-      >
-        <div className="relative mt-3 w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 hover:scale-105 transition-transform">
-          <img src={profileImg} alt="Profile" className="about-img" />
-          {/* Optional glow effect */}
-          <div className="absolute inset-0 rounded-full shadow-xl opacity-20 pointer-events-none"></div>
+          {/* Name */}
+          <h1 className="hero-name">
+            Hi, I'm <span className="gradient-text">Satish Jawarkar</span>
+          </h1>
+
+          {/* Role */}
+          <div className="hero-role-row">
+            <div className="role-line" />
+            <span className="hero-role">Software Developer</span>
+          </div>
+
+          {/* Description */}
+          <p className="hero-desc">
+            I craft modern, responsive and interactive web experiences using{" "}
+            <strong style={{ color: "#818cf8" }}>React, Angular</strong>,{" "}
+            <strong style={{ color: "#06b6d4" }}>Tailwind CSS & MUI</strong> —
+            blending clean design with cutting-edge technology.
+          </p>
+
+          {/* Buttons */}
+          <div className="hero-btns">
+            <a href="#projects" className="btn-primary">
+              🚀 View My Work
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1gKHUzR3i4ZVXhqWUs0PhT8eTnjF0mC5i/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              📄 Download Resume
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="hero-stats">
+            <div className="stat-box">
+              <div className="stat-num">4.7+</div>
+              <div className="stat-lbl">Years Exp.</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-num">15+</div>
+              <div className="stat-lbl">Projects</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-num">10+</div>
+              <div className="stat-lbl">Technologies</div>
+            </div>
+          </div>
         </div>
-      </motion.div>
 
-      {/* Optional floating shapes / decorative circles */}
-      <div className="absolute top-10 right-10 w-24 h-24 bg-yellow-300 rounded-full opacity-30 animate-pulse -z-10"></div>
-      <div className="absolute bottom-20 left-10 w-32 h-32 bg-purple-500 rounded-full opacity-20 animate-pulse -z-10"></div>
+        {/* RIGHT AVATAR */}
+        <div className="hero-right">
+          <div className="avatar-outer">
+            <div className="avatar-ring1" />
+            <div className="avatar-ring2" />
+
+            {/* Replace avatar-placeholder with <img> when you have the photo:
+                <img src={profileImg} alt="Satish Jawarkar" className="avatar-circle" /> */}
+            <div className="avatar-placeholder">SJ</div>
+
+            {/* Floating Badges */}
+            <div className="hero-badge badge-top">
+              <span className="badge-emoji">💻</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>
+                  React & Angular
+                </div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,.6)" }}>
+                  Frontend Dev
+                </div>
+              </div>
+            </div>
+
+            <div className="hero-badge badge-bottom">
+              <span className="badge-emoji">⭐</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>
+                  5.0 Rating
+                </div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,.6)" }}>
+                  Client Reviews
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Hint */}
+      <div className="scroll-indicator">
+        <div className="scroll-mouse">
+          <div className="scroll-wheel" />
+        </div>
+        <span>Scroll down</span>
+      </div>
     </section>
   );
 };

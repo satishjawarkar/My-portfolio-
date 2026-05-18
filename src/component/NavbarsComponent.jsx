@@ -1,86 +1,126 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import profileImg from "../assets/myLogo.png";
-import { motion } from "framer-motion";
-export const NavbarsComponent = () => {
-  const [scroll, setScroll] = useState(false);
 
-  // Change navbar style on scroll
+const NAV_LINKS = [
+  "home",
+  "about",
+  "skills",
+  "experience",
+  "projects",
+  "contact",
+];
+
+const NavbarsComponent = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) setScroll(true);
-      else setScroll(false);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+
+      // highlight active section
+      const offsets = NAV_LINKS.map((id) => {
+        const el = document.getElementById(id);
+        return el
+          ? { id, top: el.getBoundingClientRect().top }
+          : { id, top: 9999 };
+      });
+      const current = offsets.filter((o) => o.top <= 120).at(-1);
+      if (current) setActive(current.id);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <Navbar
-      expand="lg"
-      fixed="top"
-      variant="dark"
-      style={{
-        transition: "0.5s",
-        background: scroll
-          ? "rgba(30, 30, 30, 0.95)"
-          : "linear-gradient(90deg, #4f46e5, #9333ea)",
-        boxShadow: scroll ? "0 4px 15px rgba(0,0,0,0.3)" : "none",
-      }}
-    >
-      <Container>
-        <Navbar.Brand
-          href="#home"
-          style={{
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-            color: "#fff",
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            className="about-img-container"
-          >
-            <img src={profileImg} alt="Satish Jawarkar" className="LogoImage" />
-          </motion.div>
-        </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="navbar-nav"
-          style={{ borderColor: "#fff" }}
-        />
-        <Navbar.Collapse id="navbar-nav">
-          <Nav className="ms-auto">
-            {["home", "about", "skills", "projects", "contact"].map(
-              (section) => (
-                <Nav.Link
-                  key={section}
-                  href={`#${section}`}
-                  style={{
-                    margin: "0 10px",
-                    color: "#fff",
-                    fontWeight: "500",
-                    transition: "0.3s",
-                  }}
-                  className="nav-link-hover"
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </Nav.Link>
-              )
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+  const scrollTo = (id) => {
+    setMobileOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
-      {/* Inline styles for hover effect */}
-      <style jsx>{`
-        .nav-link-hover:hover {
-          color: #facc15 !important; /* yellow highlight on hover */
-          transform: scale(1.05);
-          transition: 0.3s;
-        }
-      `}</style>
-    </Navbar>
+  return (
+    <>
+      <nav
+        className={`navbar-fixed ${scrolled ? "navbar-scrolled" : "navbar-top"}`}
+      >
+        <div className="navbar-inner">
+          {/* Logo */}
+          <a
+            href="#home"
+            className="nav-logo"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("home");
+            }}
+          >
+            <div className="nav-logo-circle">SJ</div>
+            <span className="nav-logo-name">Satish Jawarkar</span>
+          </a>
+
+          {/* Desktop Links */}
+          <ul className="nav-links">
+            {NAV_LINKS.map((s) => (
+              <li key={s}>
+                <a
+                  href={`#${s}`}
+                  className={active === s ? "active" : ""}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(s);
+                  }}
+                >
+                  {s.charAt(0).toUpperCase() + s.slice(1)}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Hire Me + Toggle */}
+          <a
+            href="#contact"
+            className="nav-hire-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("contact");
+            }}
+          >
+            Hire Me 🚀
+          </a>
+          <button
+            className="nav-toggle"
+            onClick={() => setMobileOpen((p) => !p)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? "✕" : "☰"}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`nav-mobile ${mobileOpen ? "open" : ""}`}>
+          {NAV_LINKS.map((s) => (
+            <a
+              key={s}
+              href={`#${s}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo(s);
+              }}
+            >
+              {s.charAt(0).toUpperCase() + s.slice(1)}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="hire-mobile"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("contact");
+            }}
+          >
+            Hire Me 🚀
+          </a>
+        </div>
+      </nav>
+    </>
   );
 };
+export default NavbarsComponent;
