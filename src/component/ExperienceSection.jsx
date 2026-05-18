@@ -3,7 +3,8 @@ import React from "react";
 const EXPERIENCE = [
   {
     role: "Software Developer",
-    company: "Bisag-N",
+    company:
+      "BISAG-N (Bhaskaracharya National Institute for Space Applications and Geo-informatics)",
     period: "Nov 2024 – Present",
     current: true,
     icon: "💻",

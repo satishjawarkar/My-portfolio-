@@ -8,7 +8,7 @@ const PROJECTS = [
     bg: "linear-gradient(135deg,#4f46e5,#7c3aed)",
     tags: ["React", "CSS3", "Framer Motion"],
     cat: "Frontend",
-    live: "#",
+    live: "https://my-portfolio-mocha-nu-70.vercel.app/",
     github: "https://github.com/satishjawarkar",
     featured: true,
   },
