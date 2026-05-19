@@ -42,7 +42,7 @@ const HeroSection = () => {
               🚀 View My Work
             </a>
             <a
-              href="https://drive.google.com/file/d/1gKHUzR3i4ZVXhqWUs0PhT8eTnjF0mC5i/view?usp=sharing"
+              href="https://drive.google.com/file/d/1pMZD1n-bnNCbgJkvwqcqaLdrRUZPiC07/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline"
